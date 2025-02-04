@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:30:21 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 06:00:44 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:52:06 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	error(char str)
 {
 	if (str == 'm')
 		write(2, "Error\nInvailed map !!\n", 22);
-	exit(1);
+	ft_exit(1);
 }
 
 int	n_coines(char **map)
@@ -74,16 +74,23 @@ int	key_hook(int key, t_game *game)
 	return (0);
 }
 
+// void f()
+// {
+// 	system("leaks so_long");
+// }
+
 int	main(int c, char *v[])
 {
 	t_game	*ptr;
 	int		cond;
 
-	cond = 32;
-	ptr = NULL;
-	ptr = malloc (sizeof(t_game));
-	if (!ptr || c != 2)
+	// atexit(f);
+	if (c != 2)
 		exit(1);
+	cond = 32;
+	ptr = ft_malloc(sizeof(t_game));
+	if (!ptr)
+		ft_exit(1);
 	ptr->map = get_map(v[1], ptr);
 	if (!ptr->map)
 		error('m');

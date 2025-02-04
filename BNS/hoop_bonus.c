@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 04:20:54 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 05:54:35 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/03 21:31:21 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	monster_move(t_game *ptr)
 	int	mon_move;
 
 	ptr->frame_counter++;
-	if (ptr->frame_counter < 800)
+	if (ptr->frame_counter < 1500)
 		return (0);
 	ptr->frame_counter = 0;
 	mon_move = ptr->n_monsters;
@@ -39,7 +39,8 @@ int	clean_exit(t_game *game)
 {
 	mlx_destroy_image(game->mlx_ptr, game->enemy);
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	exit(0);
+	ft_exit(0);
+	return (0);
 }
 
 static void	is_valid_wall2(int i, char **str)

@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:29:43 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 05:43:32 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/03 22:57:52 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		floodfill(char **map, int x, int y, t_game **player);
 void	is_valid_wall(char **str);
 void	creat_stract(t_game *ptr);
+void    *ft_malloc(size_t size);
+void	ft_exit(int i);
 
-// // Bonus
+// Bonus
 void	enemy(char **str);
 char	*put_str(t_game *ptr);
 void	creat_images(t_game *ptr);
-int		x_position(t_game *ptr, int i, int y);
-int		y_position(t_game *ptr, int i, int y);
 void	get_monster_move(t_game *ptr, int *i, int *y);
 void	org_monster_move(t_game *ptr, int mon_move);
 void	move(t_game *ptr, int i, int y);

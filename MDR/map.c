@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 17:20:31 by zaissi            #+#    #+#             */
-/*   Updated: 2025/01/28 02:00:42 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/03 21:12:57 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,9 @@ char	**get_map(char *path, t_game *ptr)
 	check = ferst_check(&ptr, &i, path);
 	if (i > RESOLUTION_Y || check > RESOLUTION_X)
 		error('m');
-	map = malloc((i + 1) * sizeof(char *));
+	map = ft_malloc((i + 1) * sizeof(char *));
 	if (!map)
-		exit(1);
+		ft_exit(1);
 	map = generate_map(path, map);
 	is_valid_wall(map);
 	exit_and_player(map, &ptr);

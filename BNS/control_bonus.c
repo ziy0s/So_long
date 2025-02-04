@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 23:24:03 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/01 07:02:40 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/03 21:28:34 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	do_move_w(t_game *game, int i, int y)
 	game->player = mlx_xpm_file_to_image(game->mlx_ptr,
 			"./textures/back.xpm", &size, &size);
 	if (!game->player)
-		exit(1);
+		ft_exit(1);
 	if (game->map[y - 1][i] == 'N')
 	{
 		ft_printf("You lost in the game !!! :(\n");
@@ -49,7 +49,7 @@ void	do_move_d(t_game *game, int i, int y)
 	game->player = mlx_xpm_file_to_image(game->mlx_ptr,
 			"./textures/reght.xpm", &size, &size);
 	if (!game->player)
-		exit(1);
+		ft_exit(1);
 	if (game->map[y][i + 1] == 'N')
 	{
 		ft_printf("You lost in the game !!! :(\n");
@@ -76,7 +76,7 @@ void	do_move_s(t_game *game, int i, int y, int *check)
 	game->player = mlx_xpm_file_to_image(game->mlx_ptr,
 			"./textures/front.xpm", &size, &size);
 	if (!game->player)
-		exit(1);
+		ft_exit(1);
 	if (game->map[y + 1][i] == 'N')
 	{
 		ft_printf("You lost in the game !!! :(\n");
@@ -104,7 +104,7 @@ void	do_move_a(t_game *game, int i, int y)
 	game->player = mlx_xpm_file_to_image(game->mlx_ptr,
 			"./textures/left.xpm", &size, &size);
 	if (!game->player)
-		exit(1);
+		ft_exit(1);
 	if (game->map[y][i - 1] == 'N')
 	{
 		ft_printf("You lost in the game !!! :(\n");

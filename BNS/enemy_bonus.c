@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 22:58:54 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 05:50:36 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/03 22:56:59 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,38 @@ int	y_position(t_game *ptr, int i, int y)
 	return (0);
 }
 
+static void	if_is_wall(t_game *ptr, int *i, int *y)
+{
+	drow(ptr);
+	if (ptr->map[*i][*y] == '1')
+	{
+		if (ptr->player_pos.x > *i)
+			(*i)++;
+		if (ptr->player_pos.y > *y)
+			(*y)++;
+		if (ptr->player_pos.x < *i)
+			(*i)--;
+		if (ptr->player_pos.y < *y)
+			(*y)--;
+	}
+	drow(ptr);
+}
+
 void	get_monster_move(t_game *ptr, int *i, int *y)
 {
+	int oldi;
+	int oldy;
+	
+	oldi = *i;
+	oldy = *y;
 	if (ptr->player_pos.x > *i)
 		(*i)++;
-	else if (ptr->player_pos.y > *y)
+	if (ptr->player_pos.y > *y)
 		(*y)++;
-	else if (ptr->player_pos.x < *i)
+	if (ptr->player_pos.x < *i)
 		(*i)--;
-	else if (ptr->player_pos.y < *y)
+	if (ptr->player_pos.y < *y)
 		(*y)--;
+	if (ptr->map[*i][*y] != '0')
+		if_is_wall(ptr, i, y);
 }

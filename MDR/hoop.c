@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 04:20:54 by zaissi            #+#    #+#             */
-/*   Updated: 2025/01/27 02:32:13 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/03 21:20:52 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	tatima(t_game *ptr)
 int	clean_exit(t_game *game)
 {
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	exit(0);
+	ft_exit(0);
+	return (0);
 }
 
 static void	is_valid_wall2(int i, char **str)

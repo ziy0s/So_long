@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 05:50:11 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 05:53:05 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/03 22:55:08 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,10 @@ void	move(t_game *ptr, int i, int y)
 	oldj = y;
 	check = 8;
 	get_monster_move(ptr, &i, &y);
-	if (oldi != i && oldj != y)
-		return ;
-	if (oldi != i)
-		check = x_position(ptr, i, y);
-	else if (oldj != y)
-		check = y_position(ptr, i, y);
+	check = 1;
 	if (ptr->map[i][y] == '0' && check == 1)
 	{
-		ptr->map[oldi][oldj] = '0';
+		ptr->map[oldi][oldj] = ptr->map[i][y];
 		ptr->map[i][y] = 'N';
 	}
 	else if (ptr->map[i][y] == 'P')

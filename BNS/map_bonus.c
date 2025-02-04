@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 17:20:31 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 00:41:00 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/03 21:27:17 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ char	**get_map(char *path, t_game *ptr)
 		error('m');
 	map = malloc((i + 1) * sizeof(char *));
 	if (!map)
-		exit(1);
+		ft_exit(1);
 	map = generate_map(path, map);
 	is_valid_wall(map);
 	exit_and_player(map, &ptr);

@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:30:21 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 05:47:17 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/03 21:34:22 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	error(char str)
 	if (str == 'e')
 	{
 		ft_printf("enemy touch you ;(\n");
-		exit(0);
+		ft_exit(0);
 	}
-	exit(1);
+	ft_exit(1);
 }
 
 int	n_coines(char **map)
@@ -80,16 +80,24 @@ int	key_hook(int key, t_game *game)
 	return (0);
 }
 
+void f()
+{
+	system("leaks so_long_bonus | grep 'leaks for'");
+}
+
 int	main(int c, char *v[])
 {
 	t_game	*ptr;
 	int		cond;
 
+	atexit(f);
+	if (c != 2)
+		exit(1);
 	cond = 32;
 	ptr = NULL;
 	ptr = malloc (sizeof(t_game));
-	if (!ptr || c != 2)
-		exit(1);
+	if (!ptr)
+		ft_exit(1);
 	ptr->map = get_map(v[1], ptr);
 	if (!ptr->map)
 		error('m');

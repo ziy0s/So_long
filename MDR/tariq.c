@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 05:14:20 by zaissi            #+#    #+#             */
-/*   Updated: 2025/01/27 02:23:19 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/03 21:13:14 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ char	**copy_map(char **map, int rows)
 	char	**copy;
 
 	i = 0;
-	copy = malloc (sizeof(char *) * rows + 1);
+	copy = ft_malloc (sizeof(char *) * rows + 1);
 	if (!copy)
-		exit(1);
+		ft_exit(1);
 	while (map[i])
 	{
 		copy[i] = ft_strdup(map[i]);

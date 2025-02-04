@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 23:24:03 by zaissi            #+#    #+#             */
-/*   Updated: 2025/01/27 18:30:34 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/03 21:19:36 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	do_move_w(t_game *game, int i, int y)
 	if (game->map[y - 1][i] == 'E' && n_coines(game->map) == 0)
 	{
 		write(1, "You Win in game !!!\n", 20);
-		exit(0);
+		ft_exit(0);
 	}
 	if (game->map[y - 1][i] == 'C' || (game->map[y - 1][i] == 'E'
 			&& n_coines(game->map) != 0))
@@ -49,7 +49,7 @@ void	do_move_d(t_game *game, int i, int y)
 	else if (game->map[y][i + 1] == 'E' && n_coines(game->map) == 0)
 	{
 		write(1, "You Win in game !!!\n", 20);
-		exit(0);
+		ft_exit(0);
 	}
 	game->map[y][i] = '0';
 	game->map[y][i + 1] = 'P';
@@ -71,7 +71,7 @@ void	do_move_s(t_game *game, int i, int y, int *check)
 	else if (game->map[y + 1][i] == 'E' && n_coines(game->map) == 0)
 	{
 		write(1, "You Win in game !!!\n", 20);
-		exit(0);
+		ft_exit(0);
 	}
 	game->map[y][i] = '0';
 	game->map[y + 1][i] = 'P';
@@ -94,7 +94,7 @@ void	do_move_a(t_game *game, int i, int y)
 	else if (game->map[y][i - 1] == 'E' && n_coines(game->map) == 0)
 	{
 		write(1, "You Win in game !!!\n", 20);
-		exit(0);
+		ft_exit(0);
 	}
 	game->map[y][i] = '0';
 	game->map[y][i - 1] = 'P';
