@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd_bonus.c                               :+:      :+:    :+:   */
+/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 15:59:32 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/06 15:58:18 by zaissi           ###   ########.fr       */
+/*   Created: 2024/12/02 11:09:57 by zaissi            #+#    #+#             */
+/*   Updated: 2025/02/06 16:02:09 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 
-int	ft_putnbr_fd(int n, int fd)
-{
-	char	nbr;
-	int		res;
+# include <stdarg.h>
+# include <unistd.h>
 
-	res = 0;
-	if (fd < 0)
-		return (-1);
-	if (n == -2147483648)
-	{
-		write(fd, "-2147483648", 11);
-		return (11);
-	}
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		n = -n;
-		res++;
-	}
-	if (n > 9)
-		res += ft_putnbr_fd(n / 10, fd);
-	nbr = n % 10 + 48;
-	res++;
-	write(fd, &nbr, 1);
-	return (res);
-}
+int		ft_printf(const char *format, ...);
+int		ft_putchar_fd(char c, int fd);
+int		ft_putnbr_fd(int n, int fd);
+int		ft_putstr_fd(char *s, int fd);
+int		ft_puthex(unsigned long i, char str[16], int s);
+int		ft_putu(unsigned int i);
+
+#endif

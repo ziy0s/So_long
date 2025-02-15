@@ -6,19 +6,19 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:02:16 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 21:32:59 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/07 10:56:26 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long_bonus.h"
 
 static void	ft_free(void *ptr, int flag)
 {
 	static void	*lst[INT_MAX];
 	static int	i;
 	int			j;
-	
-	if (flag || flag == 0)
+
+	if (flag)
 	{
 		j = 0;
 		while (lst[j])
@@ -33,19 +33,31 @@ static void	ft_free(void *ptr, int flag)
 
 void	ft_exit(int i)
 {
-	ft_free(NULL, i);
+	ft_free(NULL, 1);
 	if (i)
-		ft_putstr_fd("!!!!! ERROR !!!!!!\n", 2);
+		ft_putstr_fd("ERROR\n", 2);
 	exit(i);
 }
 
-void    *ft_malloc(size_t size)
+void	*ft_malloc(size_t size)
 {
-	void    *ptr;
+	void	*ptr;
 
 	ptr = malloc(size);
 	if (!ptr)
 		ft_exit(1);
-	ft_free(ptr, 2);
+	ft_free(ptr, 0);
 	return (ptr);
+}
+
+void	free_map(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
 }

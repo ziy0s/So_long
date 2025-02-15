@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:29:43 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/07 13:31:59 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/07 13:32:07 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
-# include "mlx/mlx.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
+# include "../mlx/mlx.h"
+# include "ft_printf_bonus.h"
+# include "get_next_line_bonus.h"
 # include <fcntl.h>
 
 # ifndef RESOLUTION_X
@@ -42,13 +42,17 @@ typedef struct s_game
 	void		*mony;
 	void		*door;
 	void		*player;
+	void		*enemy;
 	t_position	player_pos;
+	t_position	monster_pos;
 	int			win_width;
 	int			win_hight;
 	int			n_coine;
 	int			p_move;
 	int			m_coine;
 	int			n_door;
+	int			n_monsters;
+	int			frame_counter;
 }				t_game;
 char	**get_map(char *path, t_game *ptr);
 void	exit_and_player(char **map, t_game **game);
@@ -68,9 +72,15 @@ int		n_coines(char **map);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		floodfill(char **map, int x, int y, t_game **player);
 void	is_valid_wall(char **str);
-void	creat_stract(t_game *ptr);
 void	*ft_malloc(size_t size);
 void	ft_exit(int i);
 void	free_map(char **str);
+
+void	enemy(char **str, int fd);
+char	*put_str(t_game *ptr);
+void	creat_images(t_game *ptr);
+void	get_monster_move(t_game *ptr, int *i, int *y);
+void	org_monster_move(t_game *ptr, int mon_move);
+void	move(t_game *ptr, int i, int y);
 
 #endif

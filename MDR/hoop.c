@@ -6,13 +6,13 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 04:20:54 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 21:20:52 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/07 13:33:17 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	tatima(t_game *ptr)
+void	b_main(t_game *ptr)
 {
 	drow(ptr);
 	mlx_key_hook(ptr->win_ptr, key_hook, ptr);
@@ -22,6 +22,14 @@ void	tatima(t_game *ptr)
 
 int	clean_exit(t_game *game)
 {
+	int	i;
+
+	i = 0;
+	while (game->map[i])
+	{
+		free(game->map[i]);
+		i++;
+	}
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	ft_exit(0);
 	return (0);
@@ -35,14 +43,20 @@ static void	is_valid_wall2(int i, char **str)
 	while (str[i][j])
 	{
 		if (str[i][j] != '1')
+		{
+			free_map(str);
 			error('m');
+		}
 		j++;
 	}
 	j = 0;
 	while (str[0][j])
 	{
 		if (str[0][j] != '1' && str[0][j] != '\n')
+		{
+			free_map(str);
 			error('m');
+		}
 		j++;
 	}
 }

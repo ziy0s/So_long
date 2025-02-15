@@ -6,11 +6,11 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 04:44:14 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/01 22:07:04 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/07 09:39:00 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long_bonus.h"
 
 static void	put_image(t_game *game, char str, int j, int i)
 {
@@ -60,7 +60,6 @@ void	drow(t_game *game)
 	}
 	mlx_string_put(game->mlx_ptr, game->win_ptr, 10, 5, 0x000000000, "Moves :");
 	mlx_string_put(game->mlx_ptr, game->win_ptr, 85, 5, 0x000000000, str);
-	free(str);
 }
 
 void	creat_images(t_game *ptr)

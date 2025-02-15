@@ -6,11 +6,11 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:30:21 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 21:34:22 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/07 13:35:14 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long_bonus.h"
 
 void	error(char str)
 {
@@ -80,22 +80,14 @@ int	key_hook(int key, t_game *game)
 	return (0);
 }
 
-void f()
-{
-	system("leaks so_long_bonus | grep 'leaks for'");
-}
-
 int	main(int c, char *v[])
 {
 	t_game	*ptr;
-	int		cond;
 
-	atexit(f);
 	if (c != 2)
 		exit(1);
-	cond = 32;
 	ptr = NULL;
-	ptr = malloc (sizeof(t_game));
+	ptr = ft_malloc (sizeof(t_game));
 	if (!ptr)
 		ft_exit(1);
 	ptr->map = get_map(v[1], ptr);
@@ -110,5 +102,5 @@ int	main(int c, char *v[])
 		error('m');
 	creat_images(ptr);
 	ptr->p_move = 0;
-	tatima(ptr);
+	b_main(ptr);
 }

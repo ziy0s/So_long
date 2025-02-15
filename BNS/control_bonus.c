@@ -6,11 +6,11 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 23:24:03 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 21:28:34 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/07 10:01:13 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long_bonus.h"
 
 void	do_move_w(t_game *game, int i, int y)
 {

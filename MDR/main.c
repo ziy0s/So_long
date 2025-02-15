@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:30:21 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/04 00:52:06 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/07 13:32:26 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,12 @@ int	key_hook(int key, t_game *game)
 	return (0);
 }
 
-// void f()
-// {
-// 	system("leaks so_long");
-// }
-
 int	main(int c, char *v[])
 {
 	t_game	*ptr;
-	int		cond;
 
-	// atexit(f);
 	if (c != 2)
 		exit(1);
-	cond = 32;
 	ptr = ft_malloc(sizeof(t_game));
 	if (!ptr)
 		ft_exit(1);
@@ -96,5 +88,5 @@ int	main(int c, char *v[])
 		error('m');
 	creat_stract(ptr);
 	ptr->p_move = 0;
-	tatima(ptr);
+	b_main(ptr);
 }

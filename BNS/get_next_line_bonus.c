@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 21:31:25 by zaissi            #+#    #+#             */
-/*   Updated: 2025/01/24 22:01:30 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/06 16:14:20 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static void	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {

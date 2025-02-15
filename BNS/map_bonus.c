@@ -6,22 +6,19 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 17:20:31 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 21:27:17 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/07 09:50:27 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long_bonus.h"
 
-static int	checker(char *str, t_game **game)
+static int	checker(char *str, t_game **game, int fd)
 {
 	int	i;
 	int	n;
 
 	if (str[0] != '1' || str[ft_strlen(str) - 2] != '1')
-	{
-		free(str);
-		error('m');
-	}
+		return (close(fd), free(str), error('m'), 0);
 	i = 0;
 	n = 0;
 	while (str[i] != '\n' && str[i])
@@ -29,7 +26,7 @@ static int	checker(char *str, t_game **game)
 		if (str[i] != '0' && str[i] != '1' && str[i] != 'P'
 			&& str[i] != 'E' && str[i] != 'C' && str[i] != '\n'
 			&& str[i] != 'N')
-			error('m');
+			return (close(fd), free(str), error('m'), 0);
 		if (str[i] == 'P' || str[i] == 'E')
 			n++;
 		if (str[i] == 'C')
@@ -37,7 +34,7 @@ static int	checker(char *str, t_game **game)
 		i++;
 	}
 	if (n > 2)
-		error('m');
+		return (close(fd), free(str), error('m'), 0);
 	return (i);
 }
 
@@ -46,20 +43,23 @@ static int	is_valid_map(int fd, int *i, t_game **ptr)
 	int		j;
 	int		check;
 	char	*line;
-	int		n;
 
 	(*i) = 0;
 	j = 0;
 	check = 0;
-	n = 0;
 	line = get_next_line(fd);
+	if (!line)
+	{
+		close(fd);
+		error('m');
+	}
 	while (line)
 	{
-		j = checker(line, ptr);
+		j = checker(line, ptr, fd);
 		if ((*i) == 0)
 			check = j;
 		if (j != check)
-			error('m');
+			return (close(fd), free(line), error('m'), 0);
 		(*i)++;
 		free(line);
 		line = get_next_line(fd);
@@ -101,13 +101,18 @@ static char	**generate_map(char *path, char **map)
 		error('m');
 	i = 0;
 	line = get_next_line(fd);
+	if (!line)
+	{
+		close(fd);
+		error('m');
+	}
 	while (line)
 	{
 		map[i++] = line;
 		line = get_next_line(fd);
 	}
 	map[i] = NULL;
-	enemy(map);
+	enemy(map, fd);
 	close(fd);
 	return (map);
 }
@@ -122,7 +127,7 @@ char	**get_map(char *path, t_game *ptr)
 	check = ferst_check(&ptr, &i, path);
 	if (i > RESOLUTION_Y || check > RESOLUTION_X)
 		error('m');
-	map = malloc((i + 1) * sizeof(char *));
+	map = ft_malloc((i + 1) * sizeof(char *));
 	if (!map)
 		ft_exit(1);
 	map = generate_map(path, map);
@@ -130,6 +135,9 @@ char	**get_map(char *path, t_game *ptr)
 	exit_and_player(map, &ptr);
 	if (ptr->n_coine
 		!= floodfill(map, ptr->player_pos.x, ptr->player_pos.y, &ptr))
+	{
+		free_map(map);
 		error('m');
+	}
 	return (ptr->win_hight = i, ptr->win_width = check, map);
 }

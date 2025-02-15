@@ -6,11 +6,11 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 05:50:11 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 22:55:08 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/07 09:30:14 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long_bonus.h"
 
 void	org_monster_move(t_game *ptr, int mon_move)
 {
@@ -51,9 +51,12 @@ void	move(t_game *ptr, int i, int y)
 		ptr->map[oldi][oldj] = ptr->map[i][y];
 		ptr->map[i][y] = 'N';
 	}
-	else if (ptr->map[i][y] == 'P')
+	if (ptr->map[i][y] == 'P')
 	{
+		ptr->map[oldi][oldj] = ptr->map[i][y];
+		ptr->map[i][y] = 'N';
 		drow(ptr);
+		free_map(ptr->map);
 		error('e');
 	}
 }

@@ -6,11 +6,11 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 01:30:25 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 00:44:27 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/07 09:44:33 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long_bonus.h"
 
 static int	virfy2(t_game *game, int key, int y, int i)
 {
@@ -112,7 +112,13 @@ void	exit_and_player(char **map, t_game **game)
 		find_p_position(map[i], i, game);
 	}
 	if (p != 1 || e != 1 || c == 0)
+	{
+		free_map(map);
 		error('m');
+	}
 	if ((*game)->n_monsters < 1)
+	{
+		free_map(map);
 		error('m');
+	}
 }

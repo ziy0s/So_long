@@ -6,7 +6,7 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 01:30:25 by zaissi            #+#    #+#             */
-/*   Updated: 2025/01/24 19:22:19 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/06 16:19:57 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,8 @@ void	exit_and_player(char **map, t_game **game)
 		find_p_position(map[i], i, game);
 	}
 	if (p != 1 || e != 1 || c == 0)
+	{
+		free_map(map);
 		error('m');
+	}
 }

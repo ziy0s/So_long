@@ -6,13 +6,13 @@
 /*   By: zaissi <zaissi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 22:58:54 by zaissi            #+#    #+#             */
-/*   Updated: 2025/02/03 22:56:59 by zaissi           ###   ########.fr       */
+/*   Updated: 2025/02/07 09:47:34 by zaissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long_bonus.h"
 
-void	enemy(char **str)
+void	enemy(char **str, int fd)
 {
 	int	i;
 	int	j;
@@ -32,7 +32,11 @@ void	enemy(char **str)
 		i++;
 	}
 	if (e == 0)
+	{
+		free_map(str);
+		close(fd);
 		error('m');
+	}
 }
 
 char	*put_str(t_game *ptr)
@@ -48,7 +52,7 @@ char	*put_str(t_game *ptr)
 		i++;
 		buck /= 10;
 	}
-	str = malloc(sizeof(char) * i + 1);
+	str = ft_malloc(sizeof(char) * i + 1);
 	if (!str)
 		error('m');
 	buck = ptr->p_move;
@@ -61,56 +65,6 @@ char	*put_str(t_game *ptr)
 		i--;
 	}
 	return (str);
-}
-
-int	x_position(t_game *ptr, int i, int y)
-{
-	int	tmp;
-
-	tmp = i;
-	while (ptr->map[tmp][y])
-	{
-		if (ptr->map[tmp][y] == 'P')
-			return (1);
-		if (ptr->map[tmp][y] == '1' && tmp < ptr->win_hight)
-			break ;
-		tmp++;
-	}
-	tmp = i;
-	while (ptr->map[tmp][y])
-	{
-		if (ptr->map[tmp][y] == 'P')
-			return (1);
-		if (ptr->map[tmp][y] == '1' && tmp < ptr->win_hight)
-			break ;
-		tmp--;
-	}
-	return (0);
-}
-
-int	y_position(t_game *ptr, int i, int y)
-{
-	int	tmp;
-
-	tmp = y;
-	while (ptr->map[i][tmp])
-	{
-		if (ptr->map[i][tmp] == 'P')
-			return (1);
-		if (ptr->map[i][tmp] == '1')
-			break ;
-		tmp++;
-	}
-	tmp = y;
-	while (ptr->map[i][tmp])
-	{
-		if (ptr->map[i][tmp] == 'P')
-			return (1);
-		if (ptr->map[i][tmp] == '1')
-			break ;
-		tmp--;
-	}
-	return (0);
 }
 
 static void	if_is_wall(t_game *ptr, int *i, int *y)
@@ -132,9 +86,9 @@ static void	if_is_wall(t_game *ptr, int *i, int *y)
 
 void	get_monster_move(t_game *ptr, int *i, int *y)
 {
-	int oldi;
-	int oldy;
-	
+	int	oldi;
+	int	oldy;
+
 	oldi = *i;
 	oldy = *y;
 	if (ptr->player_pos.x > *i)
