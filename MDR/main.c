@@ -78,7 +78,8 @@ int	main(int c, char *v[])
 {
 	t_game	*ptr;
 
-	if (c != 2)
+	if (c != 2 || RESOLUTION_X > 75 || RESOLUTION_X <= 0
+		|| RESOLUTION_Y > 40 || RESOLUTION_Y <= 0)
 		exit(1);
 	ptr = ft_malloc(sizeof(t_game));
 	if (!ptr)
